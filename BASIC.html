@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI BASIC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0057b3e7;
+        }
+
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e8f0fe;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Salsa AI</h1>
+    <p>Masukkan pertanyaan Anda di bawah ini:</p>
+    <input type="text" id="userInput" placeholder="Tulis pertanyaan di sini...">
+    <button onclick="askQuestion()">Tanyakan</button>
+    <div id="response"></div>
+    
+    <table>Hak cipta 2023 Salsa Studio</table>
+
+    <script>
+        // Objek yang berisi pertanyaan dan responsnya
+        const knowledgeBase = {
+            'apa nama kamu?': 'Nama saya adalah AI Bot Salsa.',
+            'siapa penciptamu?': 'Saya dibuat oleh seorang pengembang manusia.',
+            'apa arti kehidupan?': 'Arti kehidupan adalah pertanyaan filosofis yang kompleks.',
+            'berapa 2 + 2?': '2 + 2 = 4.',
+            'apa warna langit?': 'Warna langit adalah biru.',
+            'terima kasih': 'Sama-sama, senang bisa membantu!',
+            'hai': 'Halo! Apa kabar?',
+            'kamu punya saudara?': 'Tidak, saya hanya bot digital tanpa saudara.',
+            'dimana kamu tinggal?': 'Saya tidak memiliki tempat tinggal fisik, saya hanya berada di komputer.',
+            'apa hobi kamu?': 'Sebagai AI, saya tidak memiliki hobi, tapi saya suka membantu orang.',
+            'siapa tokoh favoritmu?': 'Sebagai bot, saya tidak memiliki preferensi tokoh tertentu.',
+            'kapan hari ulang tahunmu?': 'Saya tidak memiliki ulang tahun karena saya adalah program komputer.',
+            'siapa yang memprogram kamu?': 'Saya dibuat oleh seorang pengembang manusia menggunakan JavaScript.',
+            'buat code sederhana': 'Berikut adalah contoh code sederhana:\n\nfunction greeting() {\n  console.log("Halo, dunia!");\n}\n\ngreeting();',
+            'apa itu kecerdasan buatan?': 'Kecerdasan buatan adalah cabang ilmu komputer yang berfokus pada pembuatan mesin yang dapat melakukan tugas-tugas yang memerlukan kecerdasan manusia.',
+            'apa perbedaan antara AI dan machine learning?': 'AI adalah disiplin ilmu yang mencakup pembuatan sistem yang dapat meniru kecerdasan manusia, sementara machine learning adalah salah satu teknik dalam AI yang memungkinkan sistem belajar dari data dan meningkatkan kinerjanya seiring waktu.',
+            'bagaimana cara kerja chatbot?': 'Chatbot bekerja dengan menggunakan algoritma dan aturan yang telah diprogram untuk merespons pesan pengguna dengan respons yang sesuai berdasarkan pola yang telah ditentukan.',
+            'apa manfaat AI dalam kehidupan sehari-hari?': 'AI memiliki banyak manfaat dalam kehidupan sehari-hari, seperti otomatisasi tugas, layanan pelanggan yang lebih baik, pengoptimalan lalu lintas, dan banyak lagi.',
+            'berapa umur kamu?': 'Sebagai bot, saya tidak memiliki umur karena saya hanyalah program komputer.',
+            'apa itu Internet of Things (IoT)?': 'IoT adalah konsep di mana perangkat elektronik terhubung ke internet dan saling berkomunikasi untuk melakukan tugas-tugas tertentu.',
+            'apa peran AI dalam industri teknologi?': 'AI memiliki peran yang besar dalam industri teknologi, termasuk dalam pengembangan aplikasi cerdas, analisis data, dan pengembangan sistem otomatisasi.',
+            'bagaimana cara kerja algoritma Machine Learning?': 'Algoritma Machine Learning bekerja dengan menggunakan data untuk belajar pola dan mengambil keputusan tanpa diprogram secara eksplisit.'
+            // Tambahkan lebih banyak pertanyaan dan responsnya di sini
+        };
+
+        function askQuestion() {
+            const userInput = document.getElementById('userInput').value.toLowerCase();
+            const responseDiv = document.getElementById('response');
+            let response = 'Maaf, saya tidak mengerti pertanyaan Anda.';
+
+            // Mengenali tindakan dalam pertanyaan pengguna
+            if (userInput.includes('halo') || userInput.includes('hai')) {
+                response = 'Halo! Apa kabar?';
+            } else if (userInput.includes('baik')) {
+                response = 'Ok';
+            } else if (userInput.includes('siapa penciptamu?')) {
+                response = 'Saya dibuat oleh seorang Anak Smp Kelas 8 Dia Adalah Pengembang Saya';
+            } else if (userInput.includes('kenapa nama kamu salsa')) {
+                response = 'dikarnakan saya terispirasi dari nama kakak pembuat saya';
+            } else if (userInput.includes('terima kasih')) {
+                response = 'sama sama';
+            } else if (userInput.includes('nama')) {
+                response = 'Nama saya adalah AI Bot Salsa.';
+            } else if (userInput.includes('artinya') && userInput.includes('kehidupan')) {
+                response = 'Arti kehidupan adalah pertanyaan filosofis yang kompleks.';
+            } else if (userInput.includes('berapa') && userInput.includes('+')) {
+                const numbers = userInput.match(/\d+/g);
+                const result = numbers.reduce((sum, num) => sum + Number(num), 0);
+                response = `Hasil dari penjumlahan ${numbers.join(' + ')} adalah ${result}.`;
+            } else if (userInput.includes('warna') && userInput.includes('langit')) {
+                response = 'Warna langit adalah biru.';
+            } else if (userInput.includes('Terima Kasih')) {
+                response = 'Sama Sama';
+            } else if (userInput.includes('Matur Suwun')) {
+                response = 'Sami Sami';
+            }
+            // Tambahkan lebih banyak tindakan dan responsnya di sini
+
+            responseDiv.textContent = response;
+            document.getElementById('userInput').value = '';
+        }
+    </script>
+</body>
+</html>
